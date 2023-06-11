@@ -7,9 +7,9 @@ for env in ${env}; do
     for topic in ${topics}; do
         broker="$(shuf -n1 -e 0 1 2)"
         if [ "${topic}" != "trackunit-report-process" ]; then
-            kubectl --context "${env}" -n kafka-internal exec "kafka-cp-kafka-${broker}" -- sh -c "kafka-topics --create --topic ${topic} --partitions 6 --replication-factor 3 --config retention.ms=2592000000 --bootstrap-server kafka-cp-kafka:9092""
+            kubectl --context "${env}" -n kafka-internal exec "kafka-cp-kafka-${broker}" -- sh -c "kafka-topics --create --topic ${topic} --partitions 6 --replication-factor 3 --config retention.ms=2592000000 --bootstrap-server kafka-cp-kafka:9092"
         else
-            kubectl --context "${env}" -n kafka-internal exec "kafka-cp-kafka-${broker}" -- sh -c "kafka-topics --create --topic ${topic} --partitions 2 --replication-factor 3 --config retention.ms=2592000000 --bootstrap-server kafka-cp-kafka:9092""
+            kubectl --context "${env}" -n kafka-internal exec "kafka-cp-kafka-${broker}" -- sh -c "kafka-topics --create --topic ${topic} --partitions 2 --replication-factor 3 --config retention.ms=2592000000 --bootstrap-server kafka-cp-kafka:9092"
         fi
     done
 done
